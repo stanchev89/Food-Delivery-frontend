@@ -15,7 +15,7 @@ function objectsEqual(o1, o2){
 		: o1 === o2;
 }
 function arraysEqual(arr1, arr2){
-	return arr1.length === arr2.length && arr1.every((o, idx) => this.objectsEqual(o, arr2[idx]));
+	return arr1.length === arr2.length && arr1.every((o, idx) => objectsEqual(o, arr2[idx]));
 }
 function calculateCartTotalPrice(cart){
 	cart.totalPrice = 0;
