@@ -2,7 +2,7 @@ export function fetchWithCredentials(path,method,body) {
     return fetch(path, {
         method: method,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'x-www-form-urlencoded',
             'Access-Control-Allow-Origin': '*'
         },
         credentials: "include",
