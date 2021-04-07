@@ -2,7 +2,7 @@ import environments from "../environments";
 import {fetchWithCredentials} from '../helpers'
 
 import userService from "./userService";
-
+const path = environments.apiURL;
 const initialCart = {
 	products:[],
 	totalPrice:0
@@ -27,7 +27,7 @@ function calculateCartTotalPrice(cart){
 
 const foodService = {
 	getDailyMenu: function() {
-		const fullPath ="dishes/";
+		const fullPath = path + "dishes/";
 		return fetch(fullPath).then((dishes) => dishes.json()).catch((err) => console.error(err));
 	},
 	addToCart: function (user,item,addOrSubtract) {

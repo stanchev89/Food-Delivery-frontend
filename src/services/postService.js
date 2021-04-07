@@ -1,6 +1,6 @@
 import environments from "../environments";
 import {fetchWithCredentials} from "../helpers";
-const path ='posts/';
+const path = environments.apiURL + '/posts/';
 
 const postService = {
     getPosts: () => {
