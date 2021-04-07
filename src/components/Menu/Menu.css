@@ -1,0 +1,58 @@
+.menu {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    width: 90%;
+}
+.menu .food-list {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding:30px;
+    padding-top:10px;
+    width: 100%;
+  }
+/* .menu article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  } */
+
+.menu ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin:0;
+  }
+
+
+.menu .food-list-title {
+    width: 100%;
+    text-align: center;
+    background: #8D9F3E;
+    color: white;
+    border-radius: 3px;
+  }
+.menu .cart {
+    position: sticky;
+    top:15px;
+}
+
+@media screen and (max-width: 800px) {
+    .menu {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .menu .food-list {
+        width:90%;
+    }
+    .menu .cart {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,23 @@
+.contacts {
+    width: 100%;
+}
+.contacts .contacts-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.contacts-content .contacts-icon {
+    font-size: 3rem;
+    color: #E25E20;
+}
+
+.contacts-content .contacts-phone,
+.contacts-content .contacts-email,
+.contacts-content .contacts-address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}

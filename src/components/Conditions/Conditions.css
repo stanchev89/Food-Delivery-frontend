@@ -1,0 +1,27 @@
+.conditions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.conditions .conditions-icon {
+    font-size: 5rem;
+    color: #E25E20;
+    margin: 30px;
+}
+
+.conditions .condition-item-title {
+    margin-bottom: 5px;
+}
+
+.conditions .conditions-item {
+    width: 50%;
+    border-top: 2px solid #E25E20;
+    border-bottom: 2px solid #E25E20;
+    padding: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+    .conditions .conditions-item {
+        width: 80%;
+    }
+}

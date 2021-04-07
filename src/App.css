@@ -1,0 +1,48 @@
+html,
+body,
+*::after,
+*::before,
+* {
+    box-sizing: border-box;
+}
+
+button:focus {
+    outline: none;
+}
+
+.App {
+    width: 80%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.app-main {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+@media not all and (min-resolution: .001dpcm) {
+    @media {
+
+        .safari10 {
+          color:#0000FF;
+          background-color:#CCCCCC;
+        }
+        .menu .cart {
+            position: -webkit-sticky;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .App {
+        width: 100%;
+    }
+}

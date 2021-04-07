@@ -1,0 +1,42 @@
+.finish-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+.finish-order .finish-order-details {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.finish-order .cart,
+.finish-order .order-address,
+.finish-order .order-payment{
+    margin:20px;
+    text-align: center;
+}
+
+.finish-order .finish-order-submit-btn {
+    margin:20px;
+    padding:10px;
+    border:1px solid #8D9F3E;
+    border-radius: 3px;
+    background: #8D9F3E;
+    color:white;
+    font-weight: bold;
+}
+
+.finish-order .finish-order-submit-btn:hover{
+    cursor: pointer;
+}
+
+.finish-order .finish-order-summary {
+    text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .finish-order .finish-order-details {
+        flex-direction: column;
+    }
+}

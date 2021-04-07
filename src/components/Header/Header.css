@@ -1,0 +1,133 @@
+.container-header {
+    font-size: 1rem;
+    position: relative;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid #8D9F3E;
+    padding-bottom: 5px;
+}
+
+.container-header .container-left,
+.container-header .container-right {
+    display: flex;
+    width: fit-content;
+    align-self: flex-end;
+}
+
+.container-header .container-middle {
+    display: flex;
+    justify-content: center;
+    width: 60%
+}
+
+.container-header .container-right {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    font-size: .9rem;
+    width: fit-content;
+}
+
+.user-bar svg {
+    font-size: 20px;
+    color: #E25E20;
+}
+
+.container-header::after {
+    bottom: -6px;
+    position: absolute;
+    content: "";
+    width: 99%;
+    border: 1px solid #8D9F3E;
+    flex-basis: 90%;
+    right: .5%;
+}
+
+.container-header .logo {
+    width: 100%;
+    max-width: 200px;
+    max-height: 70px;
+}
+
+.container-header ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-bottom: 0px;
+    padding: 0;
+}
+
+.container-header ul li {
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.container-header a {
+    text-decoration: none;
+    color: black;
+    padding: 0;
+}
+
+.container-header a:hover {
+    cursor: pointer;
+}
+
+.container-header img:focus {
+    outline: unset;
+}
+
+.container-header img:hover {
+    cursor: pointer;
+}
+
+.container-header .is-active {
+    padding: 2px;
+    color: #8D9F3E;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.user-bar .user-bar-username-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user-bar-username-wrapper .user-bar-username {
+    padding: 0;
+    margin: 0;
+    margin-right: 5px;
+    font-size: .7rem;
+    align-self: flex-end;
+    font-weight: bold;
+    color: #E25E20;
+}
+
+@media screen and (max-width: 1000px) {
+    .container-header .container-left {
+        flex-basis: 100%;
+        justify-content: center;
+    }
+
+    .container-header .container-middle {
+        width: fit-content;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container-header {
+        display: flex;
+        /*flex-direction: column;*/
+        text-align: center;
+        align-items: flex-end;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+}

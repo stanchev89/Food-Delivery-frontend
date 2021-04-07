@@ -1,0 +1,11 @@
+.order-description {
+    margin:20px
+}
+.order-description-title {
+    margin:0;
+    text-align: center;
+}
+#order-description {
+    font-style: italic;
+    padding: 10px;
+}

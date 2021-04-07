@@ -1,0 +1,65 @@
+.profile-address-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin: 10px;
+}
+
+.profile-address-item label {
+    font-weight: bold;
+    font-size: .7rem;
+}
+
+.profile-address-item .profile-address-item-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.profile-address-item .profile-address-item-wrapper.region {
+    max-width: 90px;
+}
+
+.profile-address-item .profile-address-item-wrapper.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-address-item .profile-address-item-wrapper.buttons svg {
+    margin: 10px;
+    opacity: .1;
+}
+
+.profile-address-item input {
+    font-size: 1rem;
+    padding: 5px 5px 5px 0;
+    border-radius: 5px;
+    border: none;
+    overflow: hidden;
+    background: white;
+}
+
+.profile-address-item-wrapper.location {
+    min-width:200px;
+    flex-grow: 1;
+}
+
+.profile-address-item-wrapper.buttons svg:hover {
+    opacity: 1;
+    cursor: pointer;
+    color: #E25E20;
+}
+
+
+.profile-address-item-wrapper.buttons .confirm:hover {
+    color: green;
+}
+
+.profile-address-item-wrapper .editing-location {
+    border: 1px solid #E25E20;
+    font-style: italic;
+    padding: 4px 2px 4px 0px;
+}
+
+#add-address-location {
+    flex-grow: 1;
+}

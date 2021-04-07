@@ -1,0 +1,41 @@
+.notification {
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    color:white;
+    width: 30%;
+    height: fit-content;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.notification-icon {
+    font-size: 30px;
+    margin: 10px;
+}
+
+.notification-close {
+    align-self: flex-start;
+    font-size: 20px;
+    margin:3px;
+}
+
+.notification-close:hover{
+    cursor: pointer;
+}
+
+.notification.success {
+    background: #D4EDDA;
+    color: #155724;
+}
+.notification.error {
+    background: #F8D7DA;
+    color:red;
+}
+
+.notification-content {
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+    font-size: 1.2rem;
+}

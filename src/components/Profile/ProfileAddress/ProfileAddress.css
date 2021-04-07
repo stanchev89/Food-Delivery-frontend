@@ -1,0 +1,22 @@
+.profile-address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-address .add-new-address-btn {
+    margin: 20px;
+    padding: 5px 10px;
+    background: #8D9F3E;
+    border: none;
+    border-radius: 6px;
+    color: white;
+}
+
+.profile-address .add-new-address-btn:hover {
+    cursor: pointer;
+    background: white;
+    color: #8D9F3E;
+    border: 2px solid #8D9F3E;
+    padding: 3px 8px;
+}

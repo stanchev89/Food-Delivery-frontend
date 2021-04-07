@@ -1,0 +1,84 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:120px auto 60px auto;
+    position: relative;
+
+}
+
+.register .register-icon {
+    background: white;
+    font-size: 80px;
+    color: #8D9F3E;
+    box-shadow: 0 0 5px 0;
+    border:1px solid #8D9F3E;
+    padding: 10px;
+    border-radius: 12px;
+    position: absolute;
+    top: -90px;
+}
+
+.register .register-form form {
+    color:#8D9F3E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 5px 0;
+    border-radius: 12px;
+    border:1px solid #8D9F3E;
+
+    padding: 20px;
+}
+
+.register .register-form form label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.register .register-form form input {
+    padding: 10px;
+    width: 200px;
+    border-radius: 12px;
+    border:1px solid lightgrey;
+    background: whitesmoke;
+}
+
+.register-form form input::placeholder {
+    font-style: italic;
+}
+
+.register .register-form-btn {
+    padding: 10px 30px;
+    border-radius: 12px;
+    border: none;
+    color:white;
+    font-size: .8rem;
+    font-weight: bold;
+    background: #8D9F3E;
+    margin: 5px;
+}
+
+.register .register-form-btn:hover {
+    cursor: pointer;
+    background: white;
+    color: #8D9F3E;
+    border: 1px solid #8D9F3E;
+    padding: 9px 29px;
+}
+
+input:focus::placeholder {
+    opacity: .5;
+}
+
+.register .register-form form input:focus {
+    outline: none;
+    background: white;
+    border: 2px solid #8D9F3E;
+    padding:9px;
+}
+
+.invalid {
+    border: 2px solid red;
+}

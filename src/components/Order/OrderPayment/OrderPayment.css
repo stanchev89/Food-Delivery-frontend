@@ -1,0 +1,9 @@
+
+.order-payment .payment-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.order-payment .payment-select input {
+    margin-bottom: 10px;
+}
