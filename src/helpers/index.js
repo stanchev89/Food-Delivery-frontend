@@ -2,11 +2,12 @@ export function fetchWithCredentials(path,method,body) {
     return fetch(path, {
         method: method,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
         credentials: "include",
         body: body ? JSON.stringify(body) : undefined
-    })
+    });
 }
 
 export function debounce(func, wait, immediate) {

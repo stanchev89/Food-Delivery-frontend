@@ -28,7 +28,7 @@ function calculateCartTotalPrice(cart){
 const foodService = {
 	getDailyMenu: function() {
 		const fullPath = path + "dishes/";
-		return fetchWithCredentials(fullPath).then((dishes) => dishes.json()).catch((err) => console.error(err));
+		return fetchWithCredentials(fullPath).then((dishes) => dishes.json()).then(console.log).catch((err) => console.error(err));
 	},
 	addToCart: function (user,item,addOrSubtract) {
 		const cart = user.cart;
