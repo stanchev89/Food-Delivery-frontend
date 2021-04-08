@@ -1,5 +1,5 @@
 const environments = {
-    apiURL: "https://food-delivery-stanchev-backend.herokuapp.com",
+    apiURL: "https://food-delivery-stanchev-backend.herokuapp.com/",
 	regions:{
 		smolyan: 0.5,
 		raykovo: 1.5,
