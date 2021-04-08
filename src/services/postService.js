@@ -6,7 +6,7 @@ const postService = {
     getPosts: () => {
         return fetchWithCredentials(path,'GET')
             .then(res => res.json())
-            .catch(console.error)
+            .catch(console.error);
     },
     createPost: (post) => {
         const fullPath = path + 'create_post';

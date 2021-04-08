@@ -69,14 +69,14 @@ export const Posts = ({user, setNotification}) => {
         <section className="posts">
             <article className="post-list">
                 {
-                    allPosts.length === 0
+                    allPosts?.length === 0
                         ? <p>Няма предишни мнения...</p>
                         : <>
                         <BsChatDots className="post-list-logo"/>
                             {
                                 allPosts?.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
                                     .map(post => (
-                                        <PostItem key={post.description + post.title + post.author.username}
+                                        <PostItem key={post?.description + post?.title + post?.author.username}
                                                   item={post}
                                                   likeHandler={likeHandler}
                                                   user={user}
