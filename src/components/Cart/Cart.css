@@ -83,3 +83,11 @@
 .cart .cart-summary-btn:hover {
     cursor: pointer;
 }
+@media screen and (max-width: 800px) {
+    .cart {
+        max-height: 100vh;
+        height: 100%;
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}

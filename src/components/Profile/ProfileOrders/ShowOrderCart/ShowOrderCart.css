@@ -92,3 +92,9 @@
 .show-order-cart-description .description-title {
     font-size: .6rem;
 }
+
+@media screen and (max-width: 800px) {
+    .show-order-cart {
+        min-width: 100%;
+    }
+}

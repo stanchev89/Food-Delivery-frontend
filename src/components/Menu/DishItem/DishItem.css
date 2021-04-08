@@ -149,8 +149,23 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .dish {
-        font-size: .7rem;
-    }
-
+  .dish {
+      font-size: .7rem;
+  }
+  .dish-buy {
+      justify-content: center;
+  }
+  .dish .dish-buy-order {
+      width: unset;
+  }
+  .dish .dish-buy {
+      justify-content: center;
+  }
+  .dish .price-btn:hover {
+      font-weight: bold;
+      width: 100%;
+      background: #8D9F3E;
+      color:white;
+      border: none;
+  }
 }

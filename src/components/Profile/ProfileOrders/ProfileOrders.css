@@ -49,3 +49,13 @@
 .profile-orders .magnifier:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+    .order-table th,
+    .order-table td {
+        padding: 6px 15px;
+        overflow: scroll;
+        max-width: 70px;
+        overflow: scroll;
+    }
+}
