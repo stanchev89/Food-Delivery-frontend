@@ -15,7 +15,7 @@ const Profile = ({user, setUser, match, setNotification}) => {
         setUser(user);
     };
 
-    const onUpdateExistAddressHandler = (user, oldAddress, newAddres, idx) => {
+    const onUpdateExistAddressHandler = (oldAddress, newAddres, idx) => {
         user.address.splice(idx, 1, newAddres);
         userService.editUserData({deleteAddress: oldAddress, userId: user._id});
         userService.editUserData({addAddress: newAddres, userId: user._id});
