@@ -28,7 +28,7 @@ export const Posts = ({user, setNotification}) => {
         } else {
             likeAction(post.dislikes, post.likes)
         }
-        postService.editPost(post)
+        postService.editPost({post,userId: user._id})
             .then(res => {
                 const index = allPosts.findIndex(p => p.author._id === user._id);
                 const copyPosts = allPosts;
@@ -44,7 +44,7 @@ export const Posts = ({user, setNotification}) => {
             title: e.target.title.value,
             description: e.target.description.value,
         };
-        postService.createPost(newPost)
+        postService.createPost({newPost,userId: user._id})
             .then(res => {
                 const notification = {
                     message: res.message,

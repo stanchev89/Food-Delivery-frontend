@@ -1,5 +1,7 @@
 .notification {
     display:flex;
+    position: fixed;
+    top:100px;
     align-items: center;
     justify-content: flex-start;
     color:white;
@@ -38,4 +40,12 @@
     width: 100%;
     margin: 5px;
     font-size: 1.2rem;
+}
+
+@media screen and (max-width: 800px) {
+   .notification {
+       width: 80%;
+       position: fixed;
+       top:20px;
+   }
 }
