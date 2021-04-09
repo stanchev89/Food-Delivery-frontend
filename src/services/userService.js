@@ -22,6 +22,16 @@ const userService = {
         const fullPath = path +'user/profile';
         return fetchWithCredentials(fullPath,'PUT',data)
             .then(res => res.json())
+            .then(res => {
+                if(!res.message) {
+                    function onSuccess(response) {
+                        let cookieHeader = response.headers.get('set-cookie'); // or if decided other header name
+                        document.cookie = cookieHeader;
+                      }
+                      onSuccess(res);
+                      return res;
+                }
+            })
             .catch(console.error)
     },
     getUserInfo: () => {
