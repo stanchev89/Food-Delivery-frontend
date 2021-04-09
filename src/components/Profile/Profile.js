@@ -8,16 +8,17 @@ import ProfileOrders from "./ProfileOrders/ProfileOrders";
 
 
 const Profile = ({user, setUser, match, setNotification}) => {
+
     const onDeleteAddressHandler = (adr, idx) => {
         user.address.splice(idx, 1);
-        userService.editUserData({deleteAddress: adr});
+        userService.editUserData({deleteAddress: adr, userId: user._id});
         setUser(user);
     };
 
-    const onUpdateExistAddressHandler = (oldAddress, newAddres, idx) => {
+    const onUpdateExistAddressHandler = (user, oldAddress, newAddres, idx) => {
         user.address.splice(idx, 1, newAddres);
-        userService.editUserData({deleteAddress: oldAddress});
-        userService.editUserData({addAddress: newAddres});
+        userService.editUserData({deleteAddress: oldAddress, userId: user._id});
+        userService.editUserData({addAddress: newAddres, userId: user._ids});
         setUser(user);
     }
     return (

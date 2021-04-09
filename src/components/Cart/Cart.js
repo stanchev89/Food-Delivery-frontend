@@ -15,7 +15,7 @@ function Cart(props) {
     }
 
     const clearCart = () => {
-        foodService.clearCart()
+        foodService.clearCart(user._id)
             .then(user => setUser(user))
             .catch(console.error);
     }

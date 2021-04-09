@@ -49,6 +49,7 @@ const foodService = {
 			cart.products = cart.products ? cart.products.concat(item) : [item];
 		}
 		cart.totalPrice = calculateCartTotalPrice(cart);
+		cart.userId = user._id;
 		return userService.editUserData({cart});
 	},
 	removeItemFromCart: function (user,item) {
@@ -59,10 +60,11 @@ const foodService = {
 		)
 		user.cart?.products?.splice(index,1);
 		user.cart.totalPrice = calculateCartTotalPrice(user.cart)
-		return userService.editUserData({cart: user.cart});
+		const data = {cart: user.cart, userId: user._id}
+		return userService.editUserData(data);
 	},
-	clearCart: () => {
-		return userService.editUserData({cart: initialCart})
+	clearCart: (userId) => {
+		return userService.editUserData({cart: initialCart, userId})
 	},
 };
 
