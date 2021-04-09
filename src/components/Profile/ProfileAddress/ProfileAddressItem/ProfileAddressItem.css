@@ -63,3 +63,19 @@
 #add-address-location {
     flex-grow: 1;
 }
+
+@media screen and (max-width: 800px) {
+    .profile-address-item {
+        width: 80%;
+    }
+    .profile-address-item .profile-address-item-wrapper.region {
+        max-width: 50px;
+    }
+    .profile-address-item .profile-address-item-wrapper.buttons svg {
+        margin: 3px;
+    }
+
+    .profile-address-item-wrapper.location {
+        min-width:50px
+    }
+}

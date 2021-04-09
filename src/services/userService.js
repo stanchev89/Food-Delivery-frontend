@@ -1,19 +1,21 @@
 import environments from "../environments";
 import {fetchWithCredentials} from "../helpers";
 const path = environments.apiURL;
+function onSuccess(response) {
+    let cookieHeader = response.headers.get('delivery-user-cookie'); // or if decided other header name
+    document.cookie = cookieHeader;
+}
 
 const userService = {
 
+    
+    
     login: ( username, password ) => {
         const fullPath = path + 'user/login';
         return fetchWithCredentials(fullPath,'POST',{username,password})
             .then(res => res.json())
             .then(res => {
                 if(!res.message) {
-                    function onSuccess(response) {
-                        let cookieHeader = response.headers.get('set-cookie'); // or if decided other header name
-                        document.cookie = cookieHeader;
-                      }
                       onSuccess(res);
                       return res;
                 }
@@ -34,10 +36,6 @@ const userService = {
             .then(res => res.json())
             .then(res => {
                 if(!res.message) {
-                    function onSuccess(response) {
-                        let cookieHeader = response.headers.get('set-cookie'); // or if decided other header name
-                        document.cookie = cookieHeader;
-                      }
                       onSuccess(res);
                       return res;
                 }
