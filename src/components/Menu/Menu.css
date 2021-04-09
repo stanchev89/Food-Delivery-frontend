@@ -45,16 +45,18 @@
 @media screen and (max-width: 800px) {
   .menu {
       justify-content: center;
-      flex-direction: column;
+      /*flex-direction: column;*/
   }
   .menu .food-list {
       width:100%;
+      padding: 0;
   }
   .menu .cart {
-      position: static;
-      width: 100%;
+      position: -webkit-sticky;
+      position: sticky;
+      width: 50%;
       height: fit-content;
       margin-bottom: 20px;
-      margin-top: 5px;
+      margin-top: 55px;
   }
 }

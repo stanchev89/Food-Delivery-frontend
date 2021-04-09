@@ -85,9 +85,13 @@
 }
 @media screen and (max-width: 800px) {
     .cart {
-        max-height: 100vh;
-        height: 100%;
-        width: 80%;
+        max-height: 50vh;
         margin-bottom: 20px;
     }
+    .cart .cart-summary {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
+
