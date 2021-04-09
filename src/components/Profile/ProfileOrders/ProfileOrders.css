@@ -51,11 +51,15 @@
 }
 
 @media screen and (max-width: 800px) {
+    .order-table {
+        max-width: 90%;
+    }
     .order-table th,
     .order-table td {
         padding: 6px 15px;
         overflow: scroll;
         max-width: 70px;
         overflow: scroll;
+        font-size: .5rem;
     }
 }

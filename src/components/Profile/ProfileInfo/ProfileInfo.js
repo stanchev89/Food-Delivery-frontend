@@ -67,7 +67,7 @@ const ProfileInfo = ({user, setUser, setNotification,history}) => {
         if (Object.keys(newData).length === 0) {
             return editModeToggle();
         }
-        userService.editUserData(newData)
+        userService.editUserData({newData,userId: user._id})
             .then(res => {
                 if (res.message) {
                     const mongoError = res.message.split('dup key: ');
