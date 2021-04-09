@@ -49,8 +49,8 @@ const foodService = {
 			cart.products = cart.products ? cart.products.concat(item) : [item];
 		}
 		cart.totalPrice = calculateCartTotalPrice(cart);
-		cart.userId = user._id;
-		return userService.editUserData({cart});
+		
+		return userService.editUserData({cart: cart, userId: user._id});
 	},
 	removeItemFromCart: function (user,item) {
 		const index = user.cart?.products?.findIndex(prod =>
