@@ -8,6 +8,16 @@ const userService = {
         const fullPath = path + 'user/login';
         return fetchWithCredentials(fullPath,'POST',{username,password})
             .then(res => res.json())
+            .then(res => {
+                if(!res.message) {
+                    function onSuccess(response) {
+                        let cookieHeader = response.headers.get('set-cookie'); // or if decided other header name
+                        document.cookie = cookieHeader;
+                      }
+                      onSuccess(res);
+                      return res;
+                }
+            })
             .catch(err => console.error(err))
 
     },
