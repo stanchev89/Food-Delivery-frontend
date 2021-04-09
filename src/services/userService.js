@@ -7,10 +7,15 @@ const userService = {
     
     login: ( username, password ) => {
         const fullPath = path + 'user/login';
-        return fetchWithCredentials(fullPath,'POST',{username,password})
-            .then(res => res.json())
-            .catch(err => console.error(err))
-
+         return fetch(fullPath, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username,password})
+        })
+        .then(res => res.json())
+        .catch(err => console.error(err))
     },
     register: (newUser) => {
         const fullPath =path + 'user/register';

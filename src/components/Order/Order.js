@@ -36,7 +36,7 @@ function Order({user, setUser, match,history,setNotification}) {
         };
         const validOrder = newOrder.cart && newOrder.address.location && newOrder.address.region && newOrder.delivery && newOrder.totalPrice && newOrder.payment;
         if(validOrder) {
-            userService.editUserData({order:newOrder})
+            userService.editUserData({order:newOrder,userId: user._id})
                 .then(user =>  {
                     user.cart = {};
                     setUser(user);
