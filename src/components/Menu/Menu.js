@@ -85,7 +85,7 @@ function Menu(props) {
             {
                 user
                     ? <Cart match={match}/>
-                    : <Login history={history} setNotification={setNotification}/>
+                    : <Login user={user} setUser={setUser} history={history} setNotification={setNotification}/>
             }
         </section>
     );
