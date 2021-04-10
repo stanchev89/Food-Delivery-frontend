@@ -95,5 +95,7 @@
 @media screen and (max-width: 800px) {
     .show-order-cart {
         min-width: 100%;
+        position: relative;
+        top:20px;
     }
 }
