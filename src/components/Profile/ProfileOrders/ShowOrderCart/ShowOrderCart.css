@@ -4,14 +4,13 @@
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: -20px;
+    top: 30%;
     right:50%;
     transform: translate(50%);
     background: white;
     border-radius: 10px;
     border: 2px solid #E25E20;
 }
-
 .show-order-cart .close-order-cart {
     position: absolute;
     right: 0;

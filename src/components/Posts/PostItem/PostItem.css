@@ -66,6 +66,56 @@
     margin-left: 10px;
 }
 
+.post-item .edit-post-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin:20px auto;
+    text-align: center;
+}
+.post-item .edit-post-form label {
+    font-size: .7rem;
+}
+
+.post-item .edit-post-form input,
+.post-item .edit-post-form textarea{
+    margin:10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #E25E20;
+    padding: 5px;
+    text-align: center;
+}
+.post-item .edit-post-form input:focus {
+    text-align: start;
+}
+
+.post-item-edit-controls svg {
+    opacity: .5;
+    font-size: 1.5rem;
+    margin: 10px;
+    padding: 1px;
+}
+
+.edit-post-form button {
+    background: transparent;
+    border: none;
+}
+
+.post-item-edit-controls svg:hover {
+    opacity: 1;
+    cursor: pointer;
+    color: #E25E20;
+}
+
+.post-item-edit-controls .post-item-edit-confirm:hover {
+    opacity: 1;
+    cursor: pointer;
+    color: green;
+}
+
+
+
 @media screen and (max-width: 800px) {
     .post-item .post-item-likes{
         bottom: 0;

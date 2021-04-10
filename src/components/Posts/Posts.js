@@ -1,12 +1,12 @@
 import './Posts.css';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import postService from "../../services/postService";
 import PostItem from "./PostItem/PostItem";
 import {BsChatDots} from 'react-icons/bs'
+import UserContext from "../../context/UserContext";
 
-export const Posts = ({user, setNotification}) => {
+export const Posts = ({ setNotification,user}) => {
     const [allPosts, setAllPosts] = useState([]);
-
     useEffect(() => {
         postService.getPosts()
             .then(posts => {
@@ -28,7 +28,7 @@ export const Posts = ({user, setNotification}) => {
         } else {
             likeAction(post.dislikes, post.likes)
         }
-        postService.editPost({post,userId: user._id})
+        postService.editPost(post)
             .then(res => {
                 const index = allPosts.findIndex(p => p.author._id === user._id);
                 const copyPosts = allPosts;
@@ -43,8 +43,9 @@ export const Posts = ({user, setNotification}) => {
         const newPost = {
             title: e.target.title.value,
             description: e.target.description.value,
+            author: user._id
         };
-        postService.createPost({newPost,userId: user._id})
+        postService.createPost(newPost)
             .then(res => {
                 const notification = {
                     message: res.message,
@@ -79,6 +80,7 @@ export const Posts = ({user, setNotification}) => {
                                         <PostItem key={post?.description + post?.title + post?.author.username}
                                                   item={post}
                                                   likeHandler={likeHandler}
+                                                  setAllPosts={setAllPosts}
                                                   user={user}
                                         />
                                     ))

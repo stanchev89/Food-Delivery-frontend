@@ -146,7 +146,6 @@ class App extends Component {
 
                         <Route path="/posts" exact render={(props) => (
                             <Posts {...props}
-                                   setUser={this.setUser}
                                    user={this.state.currentUser}
                                    setNotification={this.setNotification}
                             />
