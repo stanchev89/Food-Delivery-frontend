@@ -1,12 +1,11 @@
 import './PostItem.css';
 import {BiDislike, BiLike} from 'react-icons/bi';
-import {useEffect, useState, useContext} from 'react';
+import {useEffect, useState} from 'react';
 import {FiCheck, FiEdit2, FiTrash} from 'react-icons/fi'
 import {IoMdClose} from 'react-icons/io';
 import postService from "../../../services/postService";
-import UserContext from "../../../context/UserContext";
 
-const PostItem = ({item, likeHandler,user, setAllPosts}) => {
+const PostItem = ({item, likeHandler, setAllPosts, user}) => {
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
     const [editMode, setEditMode] = useState(false);
@@ -52,9 +51,11 @@ const PostItem = ({item, likeHandler,user, setAllPosts}) => {
     };
 
     const editPostSubmitHandler = (e) => {
-        item.title = e.target.title.value;
-        item.description = e.target.description.value;
-       postService.editPost(item)
+        const editedPost = Object.assign(item,{
+            title: e.target.title.value,
+            description: e.target.description.value
+        })
+       postService.editPost(editedPost)
            .then(posts => setAllPosts(posts))
            .catch(console.error)
     };
@@ -80,7 +81,7 @@ const PostItem = ({item, likeHandler,user, setAllPosts}) => {
                                 <input type="text" defaultValue={item.title} id="post-form-input-title" name="title"/>
                                 <label htmlFor="post-form-input-description">Вашето мнение:</label>
                                 <textarea defaultValue={item.description} id="post-form-input-description" name="description"/>
-                                <article className="post-item-edit-controls">
+                                <article className="post-item-edit-controls form">
                                     <button><FiCheck className='post-item-edit-confirm'/></button>
                                     <IoMdClose onClick={toggleEditMode}/>
                                 </article>
