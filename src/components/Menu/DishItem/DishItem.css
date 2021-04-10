@@ -37,6 +37,10 @@
     margin-right: 10px;
   }
 
+.dish .dish-big-img img {
+  width:500px;
+}
+
 .dish ul {
     max-height: 50px;
     display: flex;

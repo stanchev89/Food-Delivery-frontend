@@ -23,7 +23,6 @@ const PostItem = ({item, likeHandler, setAllPosts, user}) => {
                 }
             }
         }
-
     };
 
     useEffect(() => {

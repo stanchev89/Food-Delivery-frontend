@@ -1,7 +1,9 @@
 import "./DishItem.css";
+import useState from 'react';
 
 function DishItem(props) {
     const {dish, addToCart, isLogged} = props;
+
     return (
         <article className="dish">
             <img src={dish.img} alt="dish img"/>

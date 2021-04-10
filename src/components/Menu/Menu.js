@@ -84,7 +84,7 @@ function Menu(props) {
             </article>
             {
                 user
-                    ? <Cart match={match}/>
+                    ? <Cart user={user} setUser={setUser} match={match}/>
                     : <Login user={user} setUser={setUser} history={history} setNotification={setNotification}/>
             }
         </section>
