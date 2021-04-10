@@ -29,7 +29,7 @@ function Menu(props) {
                             <input type="checkbox" name='showMeatless' onChange={toggleMenuToShow}/>
                             <span className="slider round"/>
                         </label>
-                        <p>безмесни ястия</p>
+                        <p>постни ястия</p>
                 </article>
                 <article className="salads">
                     <h2 className="food-list-title">Салати</h2>
