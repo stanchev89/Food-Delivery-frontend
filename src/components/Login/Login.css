@@ -89,3 +89,20 @@ input:focus::placeholder {
     font-size: .6rem;
     margin: 5px;
 }
+
+@media screen and (max-width: 800px) {
+   .login {
+       position: static;
+       width: 100%;
+       padding: 5px;
+   }
+    .login .login-form {
+        width: 100%;
+    }
+    .login-form input {
+        max-width: 60%;
+    }
+    .login .login-icon {
+        position: static;
+    }
+}
