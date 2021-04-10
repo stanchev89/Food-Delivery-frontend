@@ -1,9 +1,8 @@
 import './Posts.css';
-import {useEffect, useState, useContext} from 'react';
+import {useEffect, useState} from 'react';
 import postService from "../../services/postService";
 import PostItem from "./PostItem/PostItem";
 import {BsChatDots} from 'react-icons/bs'
-import UserContext from "../../context/UserContext";
 
 export const Posts = ({ setNotification,user}) => {
     const [allPosts, setAllPosts] = useState([]);
