@@ -2,8 +2,7 @@ export function fetchWithCredentials(path,method,body) {
     return fetch(path, {
         method: method,
         headers: {
-            'Content-Type': 'application/json',
-            'Origin': "https://food-delivery-stanchev.herokuapp.com"
+            'Content-Type': 'application/json'
         },
         credentials: "include",
         body: body ? JSON.stringify(body) : undefined
