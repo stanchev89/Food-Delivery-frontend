@@ -10,6 +10,12 @@
     flex-wrap: nowrap;
 }
 
+.finish-order .finish-order-title {
+    /*text-decoration: underline;*/
+    font-weight: lighter;
+    letter-spacing: 1.5px;
+}
+
 .finish-order .cart,
 .finish-order .order-address,
 .finish-order .order-payment{

@@ -6,6 +6,7 @@
     color: black;
     text-align: center;
 }
+
 .order-table {
     border-collapse: separate;
     border-spacing: 0;
@@ -18,14 +19,17 @@
     overflow: scroll;
     max-width: 250px;
 }
+
 .order-table th {
     text-align: center;
     background: #E25E20;
     color: #fff;
 }
+
 .order-table tr:first-child th:first-child {
     border-top-left-radius: 6px;
 }
+
 .order-table tr:first-child th:last-child {
     border-top-right-radius: 6px;
 }
@@ -38,6 +42,7 @@
 .order-table tr:last-child td:first-child {
     border-bottom-left-radius: 6px;
 }
+
 .order-table tr:last-child td:last-child {
     border-bottom-right-radius: 6px;
 }
@@ -50,16 +55,74 @@
     cursor: pointer;
 }
 
+.table-pages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.table-pages ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+}
+
+.table-pages li {
+    margin: 10px;
+}
+.table-pages li:hover {
+    cursor: pointer;
+}
+
+.table-pages .is-active {
+    padding: 2px;
+    color: #E25E20;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.show-per-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.show-per-page-title{
+    font-size: .6rem;
+    margin-top: 0;
+}
+
+.order-table .th-sorted {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.th-sorted svg {
+    font-size: 1.2rem;
+    margin: 0;
+}
+.order-table .p-sorted {
+    margin: 2px;
+}
+.order-table .th-sorted:hover {
+    cursor: pointer;
+}
+
+
+
+
+
 @media screen and (max-width: 800px) {
-    .order-table {
-        max-width: 90%;
-    }
     .order-table th,
     .order-table td {
         padding: 6px 15px;
         overflow: scroll;
         max-width: 70px;
         overflow: scroll;
-        font-size: .5rem;
     }
 }

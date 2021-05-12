@@ -2,14 +2,16 @@ import "./Header.css";
 import {NavLink, Link} from "react-router-dom";
 import {FaUser, FaShoppingCart} from 'react-icons/fa';
 import {FiLogOut} from 'react-icons/fi';
+import {useContext} from 'react'
+import UserContext from "../../context/UserContext";
 
-function Header(props) {
-    const {user} = props;
+function Header() {
+    const [user] = useContext(UserContext);
     return (
         <article className="container-header">
             <article className="container-left">
                 <Link to="/">
-                    <img src="foodDelivery-icon.png" alt="site-logo" className="logo"/>
+                    <img src="/logo.png" alt="site-logo" className="logo"/>
                 </Link>
             </article>
 
@@ -63,15 +65,15 @@ function Header(props) {
                             ? (
                                 <ul>
                                     <li>
-                                        <NavLink to="/profile" className="user-bar-username-wrapper">
+                                        <NavLink to="/profile" className="user-bar-username-wrapper" activeClassName="is-active svg">
                                             <p className="user-bar-username">{user?.username}</p>
                                             <FaUser/>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <Link to="/cart">
+                                        <NavLink to="/cart" activeClassName="is-active svg">
                                             <FaShoppingCart/>
-                                        </Link>
+                                        </NavLink>
                                     </li>
                                     <li>
                                         <Link to="/logout">

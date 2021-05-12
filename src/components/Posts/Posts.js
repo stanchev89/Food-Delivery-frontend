@@ -1,11 +1,15 @@
 import './Posts.css';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import postService from "../../services/postService";
 import PostItem from "./PostItem/PostItem";
 import {BsChatDots} from 'react-icons/bs'
+import UserContext from "../../context/UserContext";
+import NotificationContext from "../../context/NotificationContext";
 
-export const Posts = ({ setNotification,user}) => {
+export const Posts = () => {
     const [allPosts, setAllPosts] = useState([]);
+    const [notification,setNotification] = useContext(NotificationContext);
+    const [user] = useContext(UserContext);
     useEffect(() => {
         postService.getPosts()
             .then(posts => {
@@ -27,7 +31,6 @@ export const Posts = ({ setNotification,user}) => {
         } else {
             likeAction(post.dislikes, post.likes)
         }
-
         postService.editPost(post)
             .then(res => {
                 setAllPosts(res);
@@ -78,14 +81,13 @@ export const Posts = ({ setNotification,user}) => {
                                                   item={post}
                                                   likeHandler={likeHandler}
                                                   setAllPosts={setAllPosts}
-                                                  user={user}
                                         />
                                     ))
                             }
                             {
                                 !user
                                     ?
-                                    <p className="post-list-title-info">* Само регистрирани потребители оценяват мнения.</p>
+                                    <p className="post-list-title-info">* Само регистрирани потребители могат да оценяват мнения.</p>
                                     : null
                             }
                         </>

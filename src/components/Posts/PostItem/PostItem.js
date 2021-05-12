@@ -1,11 +1,13 @@
 import './PostItem.css';
 import {BiDislike, BiLike} from 'react-icons/bi';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {FiCheck, FiEdit2, FiTrash} from 'react-icons/fi'
 import {IoMdClose} from 'react-icons/io';
 import postService from "../../../services/postService";
+import UserContext from "../../../context/UserContext";
 
-const PostItem = ({item, likeHandler, setAllPosts, user}) => {
+const PostItem = ({item, likeHandler, setAllPosts}) => {
+    const [user] = useContext(UserContext);
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
     const [editMode, setEditMode] = useState(false);
@@ -23,6 +25,7 @@ const PostItem = ({item, likeHandler, setAllPosts, user}) => {
                 }
             }
         }
+
     };
 
     useEffect(() => {
@@ -50,11 +53,9 @@ const PostItem = ({item, likeHandler, setAllPosts, user}) => {
     };
 
     const editPostSubmitHandler = (e) => {
-        const editedPost = Object.assign(item,{
-            title: e.target.title.value,
-            description: e.target.description.value
-        })
-       postService.editPost(editedPost)
+        item.title = e.target.title.value;
+        item.description = e.target.description.value;
+       postService.editPost(item)
            .then(posts => setAllPosts(posts))
            .catch(console.error)
     };

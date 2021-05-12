@@ -3,10 +3,14 @@ import DishItem from "./DishItem/DishItem";
 import Cart from "../Cart/Cart";
 import foodService from "../../services/foodService";
 import Login from "../Login/Login";
-import {useState} from 'react'
+import {useContext,useState} from 'react'
+import UserContext from "../../context/UserContext";
+import NotificationContext from "../../context/NotificationContext";
 
 function Menu(props) {
-    const {user,setUser,menu, match, history,setNotification} = props;
+    const {menu, match, history} = props;
+    const [user,setUser] = useContext(UserContext);
+    const [notification,setNotification] = useContext(NotificationContext);
     const [meatlessMode, setMeatlessMode] = useState(false);
 
     const addToCart = (dish) => {
@@ -84,8 +88,8 @@ function Menu(props) {
             </article>
             {
                 user
-                    ? <Cart user={user} setUser={setUser} match={match}/>
-                    : <Login user={user} setUser={setUser} history={history} setNotification={setNotification}/>
+                    ? <Cart match={match}/>
+                    : <Login history={history} setNotification={setNotification}/>
             }
         </section>
     );

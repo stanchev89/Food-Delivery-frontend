@@ -14,7 +14,7 @@ export default function () {
                         гр.Смолян,бул."България" 5
                         МОЛ.:Стефан Станчев</p>
 
-                    <img src="foodDelivery-icon.png" alt="company logo"/>
+                    <img src="logo.png" alt="company logo"/>
                 </article>
             </article>
 

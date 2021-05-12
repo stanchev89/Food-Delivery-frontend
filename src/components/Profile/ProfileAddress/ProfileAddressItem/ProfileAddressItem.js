@@ -1,12 +1,14 @@
 import './ProfileAddressItem.css';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {FiCheck, FiEdit2, FiTrash} from 'react-icons/fi'
 import {IoMdClose} from 'react-icons/io';
 import environments from "../../../../environments";
+import NotificationContext from "../../../../context/NotificationContext";
 
 const mapBgRegions = environments.mapBgRegions;
 
-const ProfileAddressItem = ({address, index,onDeleteAddressHandler,onUpdateExistAddressHandler, setNotification}) => {
+const ProfileAddressItem = ({address, index,onDeleteAddressHandler,onUpdateExistAddressHandler}) => {
+    const [notification,setNotification] = useContext(NotificationContext);
     const [editMode, setEditMode] = useState(false);
     const [location,setLocation] = useState(address.location);
 
@@ -50,7 +52,6 @@ const ProfileAddressItem = ({address, index,onDeleteAddressHandler,onUpdateExist
             <article className="profile-address-item-wrapper region">
                 <label htmlFor="add-address-region">Регион</label>
                 <input type="text"
-                       id="add-address-region"
                        name="region"
                        defaultValue={mapBgRegions[address.region]}
                        disabled={true}
@@ -60,7 +61,6 @@ const ProfileAddressItem = ({address, index,onDeleteAddressHandler,onUpdateExist
             <article className="profile-address-item-wrapper location">
                 <label htmlFor="add-address-location">Точен адрес</label>
                 <input type="text"
-                       id="add-address-location"
                        name="location"
                        value={location}
                        disabled={!editMode}

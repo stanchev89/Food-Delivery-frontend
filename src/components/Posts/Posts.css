@@ -6,7 +6,7 @@
     color: #E25E20;
 }
 .posts {
-    margin-top:20px;
+    margin: 20px;
     width: 80%;
     display: flex;
     flex-wrap: nowrap;

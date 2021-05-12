@@ -4,27 +4,32 @@ import {BsTrash} from 'react-icons/bs';
 import CartItem from "./CartItem/CartItem";
 import foodService from "../../services/foodService";
 import {Link} from 'react-router-dom'
+import {useContext} from 'react'
+import UserContext from "../../context/UserContext";
 
 function Cart(props) {
-    const {user, setUser, match} = props;
+    const {match} = props;
+    const [user, setUser] = useContext(UserContext);
     const onChangeItemQuantity = (item, action) => {
         action === 'add' ? item.quantity++ : item.quantity--;
         foodService.addToCart(user, item, action)
             .then(user => setUser(user))
             .catch(console.error);
-    }
+    };
 
     const clearCart = () => {
-        foodService.clearCart(user._id)
-            .then(user => setUser(user))
-            .catch(console.error);
-    }
+        if(user?.cart.products.length > 0) {
+            foodService.clearCart()
+                .then(user => setUser(user))
+                .catch(console.error);
+        };
+    };
 
     const onRemoveItemHandler = (dish) => {
         foodService.removeItemFromCart(user, dish)
             .then(user => setUser(user))
             .catch(console.error);
-    }
+    };
     return (
         <section className="cart">
             <article className="cart-icon-wrapper">
@@ -38,7 +43,11 @@ function Cart(props) {
                         <ul>
                             {
                                 user?.cart?.products.map(item => (
-                                    <li key={item?.name}>
+                                    <li key={
+                                        item?.name
+                                        + typeof (item?.selected_options) === 'object' ? (`${item.name} ${Object.keys(item.selected_options).join('')}`) : ''
+                                        + typeof (item?.selected_options) === 'object' ? (`${item.name} ${Object.values(item.selected_options).join('')}`) : ''
+                                    }>
                                         <CartItem item={item}
                                                   onChangeItemQuantity={onChangeItemQuantity}
                                                   onRemoveItem={onRemoveItemHandler}
@@ -56,7 +65,7 @@ function Cart(props) {
 
                                 {
                                     !match.path.includes('order')
-                                        ? <Link to="order" >
+                                        ? <Link to="order">
                                             <button className="cart-summary-btn">Поръчай</button>
                                         </Link>
                                         : null
@@ -66,7 +75,7 @@ function Cart(props) {
                         </article>
 
                     </article>
-                    : <p>Няма добавени продукти...</p>
+                    : <p>Нямате добавени продукти...</p>
             }
 
         </section>

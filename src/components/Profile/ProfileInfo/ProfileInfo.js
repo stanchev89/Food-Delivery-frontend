@@ -1,9 +1,12 @@
 import './ProfileInfo.css';
 import {useState, useEffect} from 'react';
 import userService from "../../../services/userService";
-
-const ProfileInfo = ({user, setUser, setNotification,history}) => {
-
+import {useContext} from 'react'
+import UserContext from "../../../context/UserContext";
+import NotificationContext from "../../../context/NotificationContext";
+const ProfileInfo = ({history}) => {
+    const [user, setUser] = useContext(UserContext);
+    const [notification,setNotification] = useContext(NotificationContext);
     useEffect(() => {
         return () => setNotification({});
     },[])
@@ -67,7 +70,7 @@ const ProfileInfo = ({user, setUser, setNotification,history}) => {
         if (Object.keys(newData).length === 0) {
             return editModeToggle();
         }
-        userService.editUserData({newData,userId: user._id})
+        userService.editUserData(newData)
             .then(res => {
                 if (res.message) {
                     const mongoError = res.message.split('dup key: ');

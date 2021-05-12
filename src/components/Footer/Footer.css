@@ -5,7 +5,27 @@
     width: 100%;
     text-align: end;
     border-top: 2px solid #8D9F3E;
+    margin-top: 100px;
 }
+.footer .company-logo {
+    display: flex;
+    position: relative;
+    top: -15px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.company-logo img {
+    width: 150px;
+    height: 50px;
+    object-fit: contain;
+}
+.company-logo h5 {
+    font-size: .5rem;
+    margin: 3px;
+    padding: 0;
+}
+
 
 .footer .footer-nav-bar ul{
     display: flex;
@@ -14,6 +34,7 @@
     text-align: center;
     padding-left: 10px;
 }
+
 .footer .footer-nav-bar li {
     margin-right: 20px
 }
@@ -35,9 +56,6 @@
     margin-right: 20px;
 }
 
-.footer h5 {
-    margin:10px;
-}
 
 @media screen and (max-width: 1300px) {
     .footer .footer-nav-bar ul{

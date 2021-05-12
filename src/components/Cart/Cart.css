@@ -83,6 +83,7 @@
 .cart .cart-summary-btn:hover {
     cursor: pointer;
 }
+
 @media screen and (max-width: 800px) {
     .cart {
         width: 90%;
@@ -95,4 +96,3 @@
         justify-content: center;
     }
 }
-

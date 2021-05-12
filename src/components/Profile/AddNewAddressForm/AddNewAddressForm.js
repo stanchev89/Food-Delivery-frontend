@@ -1,11 +1,14 @@
 import './AddNewAddressForm.css';
 import environments from "../../../environments";
 import userService from "../../../services/userService";
+import {useContext} from 'react'
+import UserContext from "../../../context/UserContext";
 
 const mapRegions = environments.regions;
 const mapBgRegions = environments.mapBgRegions;
 
-function AddNewAddressForm({user,setUser,toggleNewAddressForm}) {
+function AddNewAddressForm({toggleNewAddressForm}) {
+    const [user, setUser] = useContext(UserContext);
 
     const addUserNewAddress = (e) => {
         e.preventDefault();
@@ -15,7 +18,7 @@ function AddNewAddressForm({user,setUser,toggleNewAddressForm}) {
         if(region && location && ! exist) {
             const delivery = mapRegions[region];
             const newAddress = {region, location, delivery}
-            userService.editUserData({addAddress: newAddress, userId: user._id})
+            userService.editUserData({addAddress: newAddress})
                 .then(user => setUser(user))
                 .then(() => toggleNewAddressForm())
                 .catch(console.error)

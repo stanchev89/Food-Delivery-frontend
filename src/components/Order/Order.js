@@ -2,25 +2,29 @@ import './Order.css';
 import Cart from "../Cart/Cart";
 import OrderAddress from "./OrderAddress/OrderAddress";
 import OrderPayment from "./OrderPayment/OrderPayment";
-import {useState,useEffect} from 'react'
+import {useState,useEffect, useContext} from 'react'
 import OrderDescription from "./OrderDescription/OrderDescription";
 import environments from "../../environments";
 import userService from "../../services/userService";
+import UserContext from "../../context/UserContext";
+import NotificationContext from "../../context/NotificationContext";
 
-function Order({user, setUser, match,history,setNotification}) {
+function Order({match,history}) {
+    const [user, setUser] = useContext(UserContext);
+    const [notification,setNotification] = useContext(NotificationContext);
     const [order,setOrder] = useState({cart:user?.cart});
     const [delivery, setDelivery] = useState(0.5);
 
     useEffect(() => {
         if(Number(user?.cart?.totalPrice) >= 10) {
             setDelivery(0.5);
-        }else {
+        } else {
             const deliveryPerRegion = Number(environments.regions[order?.address?.region]);
             if(!isNaN(deliveryPerRegion)) {
                 setDelivery(deliveryPerRegion);
             }
         }
-    },[user, order?.address]);
+    },[user.cart.totalPrice, order]);
 
 
     const onSubmitOrderHandler = () => {
@@ -34,43 +38,45 @@ function Order({user, setUser, match,history,setNotification}) {
             payment: order?.payment,
             date: new Date().toLocaleString()
         };
-        const validOrder = newOrder.cart && newOrder.address.location && newOrder.address.region && newOrder.delivery && newOrder.totalPrice && newOrder.payment;
+        const validOrder = (!!newOrder.cart) && (!!newOrder.address.location) && (!!newOrder.address.region) && (!!newOrder.delivery) && (!!newOrder.totalPrice) && (!!newOrder.payment);
         if(validOrder) {
-            userService.editUserData({order:newOrder,userId: user._id})
-                .then(user =>  {
-                    user.cart = {};
-                    setUser(user);
+            userService.addNewOrder(newOrder)
+                .then(res => {
+                    const updatedUser = user;
+                    updatedUser.cart = {};
+                    setUser(updatedUser);
                     const notification = {
                         message:'Благодарим ви за поръчката!',
                         type: 'success'
-                    }
-                    setNotification(notification)
-                })
-                .then(() => history.push('/'))
-                .catch(console.error);
+                    };
+                    setNotification(notification);
+                    history.push('/')
+                }).catch(console.error);
+
         }else {
             const notification = {
                 message: 'Моля, въведете адрес и начин на плащане!',
                 type: 'error'
-            }
+            };
             setNotification(notification)
         }
 
-    }
+    };
     useEffect(() => {
         setOrder(prevState => ({...prevState, cart:user?.cart}))
     },[user?.cart?.products]);
 
     return (
         <section className="finish-order">
+            <h1 className="finish-order-title">Завършване на поръчка</h1>
             <article className="finish-order-details">
                 {
                     user?.cart?.products?.length > 0
                         ? <>
-                            <Cart user={user} setUser={setUser} match={match}/>
-                            <OrderAddress user={user} setUser={setUser} order={order} setOrder={setOrder} />
-                            <OrderPayment order={order} setOrder={setOrder}/>
-                            <OrderDescription order={order} setOrder={setOrder}/>
+                            <Cart match={match}/>
+                            <OrderAddress setOrder={setOrder} setUser={setUser} />
+                            <OrderPayment setOrder={setOrder}/>
+                            <OrderDescription setOrder={setOrder}/>
                         </>
                         : <p>Нямате добавени продукти в количката...</p>
 

@@ -2,13 +2,19 @@ import './Login.css';
 import {FiLogIn} from "react-icons/fi";
 import userService from "../../services/userService";
 import { Link } from 'react-router-dom'
-import {useEffect} from "react";
+import {useContext} from "react";
+import {useHistory} from 'react-router-dom'
+import UserContext from "../../context/UserContext";
+import NotificationContext from '../../context/NotificationContext'
 
-const Login = ({setUser, history, setNotification,...props}) => {
+const Login = () => {
+    const history = useHistory();
+    const [_,setUser] = useContext(UserContext);
+    const [notification,setNotification] = useContext(NotificationContext);
 
-    useEffect(() => {
-        return () => setNotification({});
-    },[]);
+    // useEffect(() => {
+    //     return () => setNotification({});
+    // },[]);
 
     const onSubmitLoginHandler = (e) => {
         e.preventDefault();
@@ -24,7 +30,7 @@ const Login = ({setUser, history, setNotification,...props}) => {
                     setNotification(notification);
                 }else {
                     setNotification({});
-                    setUser(res)
+                    setUser(res);
                     history.push('/')
                 }
             })
@@ -48,5 +54,5 @@ const Login = ({setUser, history, setNotification,...props}) => {
             </article>
         </section>
     )
-}
+};
 export default Login;

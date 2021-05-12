@@ -1,6 +1,6 @@
 import './OrderDescription.css';
 
-const OrderDescription = ({order,setOrder}) => {
+const OrderDescription = ({setOrder}) => {
     const onBlurOrderDescription = (e) => {
         const description = e.target.value;
         setOrder(prevState => ({...prevState, description}))

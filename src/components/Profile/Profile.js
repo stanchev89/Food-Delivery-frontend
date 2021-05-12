@@ -5,20 +5,23 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileAddress from "./ProfileAddress/ProfileAddress";
 import userService from "../../services/userService";
 import ProfileOrders from "./ProfileOrders/ProfileOrders";
+import {useContext} from 'react'
+import UserContext from "../../context/UserContext";
+import * as routes from '../../routes';
 
 
-const Profile = ({user, setUser, match, setNotification}) => {
-
-    const onDeleteAddressHandler = (adr, idx) => {
+const Profile = () => {
+    const [user, setUser] = useContext(UserContext);
+        const onDeleteAddressHandler = (adr, idx) => {
         user.address.splice(idx, 1);
-        userService.editUserData({deleteAddress: adr, userId: user._id});
+        userService.editUserData({deleteAddress: adr});
         setUser(user);
     };
 
     const onUpdateExistAddressHandler = (oldAddress, newAddres, idx) => {
         user.address.splice(idx, 1, newAddres);
-        userService.editUserData({deleteAddress: oldAddress, userId: user._id});
-        userService.editUserData({addAddress: newAddres, userId: user._id});
+        userService.editUserData({deleteAddress: oldAddress});
+        userService.editUserData({addAddress: newAddres});
         setUser(user);
     }
     return (
@@ -30,19 +33,19 @@ const Profile = ({user, setUser, match, setNotification}) => {
                         <section className="profile-header">
                             <nav className="profile-header-nav">
                                 <NavLink
-                                    to={match.url}
+                                    to={routes.profile}
                                     exact
                                     activeClassName="is-active">
                                     Моите данни
                                 </NavLink>
                                 <NavLink
-                                    to={match.url + '/address'}
+                                    to={routes.profile + '/address'}
                                     exact
                                     activeClassName="is-active">
                                     Моите адреси
                                 </NavLink>
                                 <NavLink
-                                    to={match.url + '/orders'}
+                                    to={routes.profile + '/orders'}
                                     exact
                                     activeClassName="is-active">
                                     Моите поръчки
@@ -55,24 +58,19 @@ const Profile = ({user, setUser, match, setNotification}) => {
                                 <FaUser className="profile-icon"/>
                             </article>
                             <Switch>
-                                <Route path="/profile" exact render={(props) => (
-                                    <ProfileInfo {...props}
-                                                 user={user}
-                                                 setUser={setUser}
-                                                 setNotification={setNotification}
-                                    />
+                                <Route path={routes.profile} exact render={(props) => (
+                                    <ProfileInfo {...props}/>
                                 )}/>
-                                <Route path="/profile/address" exact render={(props) => (
-                                    <ProfileAddress {...props}
-                                                    user={user}
-                                                    setUser={setUser}
-                                                    setNotification={setNotification}
-                                                    onDeleteAddressHandler={onDeleteAddressHandler}
-                                                    onUpdateExistAddressHandler={onUpdateExistAddressHandler}
-                                    />
+                                <Route path={routes.profile + '/address'} exact render={(props) => (
+                                    <>
+                                        <ProfileAddress {...props}
+                                                        onDeleteAddressHandler={onDeleteAddressHandler}
+                                                        onUpdateExistAddressHandler={onUpdateExistAddressHandler}
+                                        />
+                                    </>
+
                                 )}/>
-                                <Route path="/profile/orders" exact render={(props) => (
-                                    <ProfileOrders {...props} user={user}/>
+                                <Route path={routes.profile + '/orders'} exact component={ProfileOrders}/>
                                 )}/>
                             </Switch>
                         </section>

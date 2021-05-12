@@ -28,18 +28,18 @@ button:focus {
 }
 
 
-@media not all and (min-resolution: .001dpcm) {
-    @media {
+/*@media not all and (min-resolution: .001dpcm) {*/
+/*    @media {*/
 
-        .safari10 {
-          color:#0000FF;
-          background-color:#CCCCCC;
-        }
-        .menu .cart {
-            position: -webkit-sticky;
-        }
-    }
-}
+/*        .safari10 {*/
+/*          color:#0000FF;*/
+/*          background-color:#CCCCCC;*/
+/*        }*/
+/*        .menu .cart {*/
+/*            position: -webkit-sticky;*/
+/*        }*/
+/*    }*/
+/*}*/
 
 @media screen and (max-width: 1000px) {
     .App {

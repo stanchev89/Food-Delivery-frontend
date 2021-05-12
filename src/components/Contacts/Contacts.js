@@ -6,15 +6,15 @@ function Contacts() {
         <section className="contacts">
             <article className="contacts-content">
                 <article className="contacts-phone">
-                    <BiPhone class="contacts-icon"/>
+                    <BiPhone className="contacts-icon"/>
                     <h2>+359 878 123 123</h2>
                 </article>
                 <article className="contacts-email">
-                    <GoMail class="contacts-icon"/>
+                    <GoMail className="contacts-icon"/>
                     <h2>delivery@fooddelivery.com</h2>
                 </article>
                 <article className="contacts-address">
-                    <GoLocation class="contacts-icon"/>
+                    <GoLocation className="contacts-icon"/>
                     <h2>гр.Смолян,бул."България" 5</h2>
                 </article>
             </article>

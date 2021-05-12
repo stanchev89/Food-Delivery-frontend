@@ -1,16 +1,24 @@
 .show-order-cart {
     min-width: 500px;
+    max-height: 65%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    position: absolute;
-    top: 30%;
+    position: fixed;
+    top: 22%;
     right:50%;
     transform: translate(50%);
     background: white;
     border-radius: 10px;
     border: 2px solid #E25E20;
+    overflow: scroll;
+    margin-bottom: 20px;
 }
+.order-number {
+    margin: 20px 0 0 0 ;
+    font-size: .5rem;
+}
+
 .show-order-cart .close-order-cart {
     position: absolute;
     right: 0;
@@ -22,14 +30,11 @@
 }
 
 .profile-order-cart-icon {
-    font-size: 3rem;
+    font-size: 2rem;
     color: #E25E20;
-    position: absolute;
     right: 50%;
-    transform: translate(80%);
-    padding:5px;
-    top: -25px;
     background: white;
+    margin-top: 10px;
 }
 
 .order-cart-table {
@@ -63,7 +68,15 @@
     border-right: 1px solid #c6c9cc;
     border-bottom: 1px solid #c6c9cc;
     font-size: .6rem;
+    font-weight: bold;
 }
+.order-cart-table .dish-selected-options {
+    font-weight: normal;
+    font-style: italic;
+    font-size: .5rem;
+    padding: 0;
+}
+
 
 .show-order-cart-description {
     display: flex;
@@ -92,10 +105,9 @@
     font-size: .6rem;
 }
 
+
 @media screen and (max-width: 800px) {
     .show-order-cart {
         min-width: 100%;
-        position: relative;
-        top:20px;
     }
 }

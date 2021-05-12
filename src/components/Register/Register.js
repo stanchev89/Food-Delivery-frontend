@@ -1,13 +1,16 @@
 import './Register.css';
 import {FiUserPlus} from 'react-icons/fi'
 import userService from "../../services/userService";
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
+import {useHistory} from 'react-router-dom';
+import NotificationContext from "../../context/NotificationContext";
 
-const Register = ({history, setNotification}) => {
-    const invalidInput = false;
+const Register = () => {
+    const [notification,setNotification] = useContext(NotificationContext);
+    const history = useHistory();
     useEffect(() => {
         return () => setNotification({});
-    },[])
+    },[]);
 
     const onSubmitRegisterHandler = (e) => {
         e.preventDefault();

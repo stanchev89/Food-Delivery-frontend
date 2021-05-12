@@ -42,9 +42,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*border-top: 3px solid #E25E20;*/
-    /*border-bottom: 3px solid #E25E20;*/
-    /*border: 3px double #E25E20;*/
     border-left: 3px solid #E25E20;
     border-right: 3px solid #E25E20;
     border-radius: 90px;
@@ -57,11 +54,8 @@
     transform: translate(-50%);
     font-size: 3rem;
 }
-
 @media screen and (max-width: 800px) {
     .profile .profile-content {
         max-width: 100%;
-        height: fit-content;
-        margin-bottom: 10px;
     }
 }

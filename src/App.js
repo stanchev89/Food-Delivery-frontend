@@ -14,14 +14,18 @@ import Contacts from "./components/Contacts/Contacts";
 import Posts from "./components/Posts/Posts";
 import About from "./components/About/About";
 import Conditions from "./components/Conditions/Conditions";
-
+import PageNotFound from "./components/PageNotFound/PageNotFound"
 
 import {Route, Switch} from "react-router-dom";
 import {Component} from "react";
 import Cart from "./components/Cart/Cart";
 import Notification from "./components/Notification/Notification";
 import Profile from "./components/Profile/Profile";
-
+import UserContext from "./context/UserContext";
+import ErrorBoundary from "./ErrorBoundary";
+import Routeguard from "./hoc/RouteGuard";
+import NotificationContext from './context/NotificationContext';
+import * as routes from './routes'
 
 class App extends Component {
     constructor(props) {
@@ -33,18 +37,18 @@ class App extends Component {
                 message: '',
                 type: ''
             }
-        }
+        };
         this.setUser = this.setUser.bind(this)
         this.getUserInfo = this.getUserInfo.bind(this);
         this.setNotification = this.setNotification.bind(this);
     }
 
-    componentDidMount() {
+     componentDidMount() {
         foodService.getDailyMenu()
             .then(dishes => {
                 this.setState(state => ({...state, menu: dishes}))
             }).catch(err => console.error(err));
-        userService.getUserInfo()
+         userService.getUserInfo()
             .then(user => {
                 if (user) {
                     this.setState((state) => ({currentUser: user.message ? undefined : user}))
@@ -68,7 +72,7 @@ class App extends Component {
                 notification
             }
         ))
-    }
+    };
 
     getUserInfo() {
         userService.getUserInfo()
@@ -81,81 +85,105 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header user={this.state.currentUser}/>
-                {
-                    this.state.notification.message
-                        ? <Notification
-                            notification={this.state.notification}
-                            setNotification={this.setNotification}
-                        />
-                        : null
-                }
-                <main className="app-main">
-                    <Switch>
+                <UserContext.Provider value={[this.state.currentUser, this.setUser]}>
+                    <NotificationContext.Provider value={[this.state.notification, this.setNotification]}>
+                        <Header/>
+                        {
+                            this.state.notification.message
+                                ? <Notification
+                                    notification={this.state.notification}
+                                    setNotification={this.setNotification}
+                                />
+                                : null
+                        }
+                        <main className="app-main">
+                            <ErrorBoundary>
+                                <Switch>
 
-                        <Route path="/" exact render={(props) => (
-                            <Menu {...props}
-                                  menu={this.state.menu}
-                                  user={this.state.currentUser}
-                                  setUser={this.setUser}
-                                  setNotification={this.setNotification}
-                            />
-                        )}/>
+                                    <Route path={routes.rootPath} exact render={(props) => (
+                                        <Menu {...props}
+                                              menu={this.state.menu}
+                                        />
+                                    )}/>
 
-                        <Route path="/register" exact render={(props) => (
-                            <Register {...props}
-                                      setNotification={this.setNotification}
-                            />
-                        )}/>
+                                    <Route path={routes.register}
+                                           render={ () =>
+                                               (
+                                                   <Routeguard mustBeLoggedIn={false} redirectTo={routes.login}>
+                                                       <Register/>
+                                                   </Routeguard>
+                                               )
+                                           }
+                                    />
 
-                        <Route path="/login" exact render={(props) => (
-                            <Login {...props}
-                                   setUser={this.setUser}
-                                   setNotification={this.setNotification}
-                            />
-                        )}/>
-
-                        <Route path="/profile" render={(props) => (
-                            <Profile {...props}
-                                     user={this.state.currentUser}
-                                     setUser={this.setUser}
-                                     setNotification={this.setNotification}
-                            />
-                        )}/>
+                                    <Route path={routes.login}
+                                           render={ () =>
+                                               (
+                                                   <Routeguard mustBeLoggedIn={false} redirectTo={routes.rootPath}>
+                                                       <Login/>
+                                                   </Routeguard>
+                                               )
+                                           }
+                                    />
 
 
-                        <Route path="/logout" exact render={(props) => (
-                            <Logout {...props} setUser={this.setUser}/>
-                        )}/>
+                                    <Route path={routes.profile}
+                                           render={ () =>
+                                               (
+                                                   <Routeguard mustBeLoggedIn={true} redirectTo={routes.login}>
+                                                       <Profile/>
+                                                   </Routeguard>
+                                               )
+                                           }
+                                    />
 
-                        <Route path="/cart" exact render={(props) => (
-                            <Cart {...props}
-                                  setUser={this.setUser}
-                                  user={this.state.currentUser}
-                                  setNotification={this.setNotification}
-                            />
-                        )}/>
+                                    <Route path={routes.logout}
+                                           render={() =>
+                                               (
+                                                   <Routeguard mustBeLoggedIn={true} redirectTo={routes.login}>
+                                                       <Logout/>
+                                                   </Routeguard>
+                                               )
+                                           }
+                                    />
 
-                        <Route path="/order" exact render={(props) => (
-                            <Order {...props}
-                                   setUser={this.setUser}
-                                   user={this.state.currentUser}
-                                   setNotification={this.setNotification}
-                            />
-                        )}/>
+                                    <Route path={routes.cart}
+                                           render={ ({match,location}) =>
+                                               (
+                                                   <Routeguard
+                                                       mustBeLoggedIn={true}
+                                                       redirectTo={routes.login}
+                                                       match={match}
+                                                       location={location}
+                                                   >
+                                                       <Cart/>
+                                                   </Routeguard>
+                                               )
+                                           }
+                                    />
 
-                        <Route path="/posts" exact render={(props) => (
-                            <Posts {...props}
-                                   user={this.state.currentUser}
-                                   setNotification={this.setNotification}
-                            />
-                        )}/>
-                        <Route path="/contacts" exact component={Contacts}/>
-                        <Route path="/about" exact component={About}/>
-                        <Route path="/conditions" exact component={Conditions}/>
-                    </Switch>
-                </main>
-                <Footer/>
+                                    <Route path={routes.order}
+                                           render={ ({match,location,history}) =>
+                                               (
+                                                   <Routeguard mustBeLoggedIn={true} match={match} history={history} location={location} redirectTo={routes.login}>
+                                                       <Order/>
+                                                   </Routeguard>
+                                               )
+                                           }
+                                    />
+
+                                    <Route path={routes.posts} exact component={Posts}/>
+                                    <Route path={routes.contacts} exact component={Contacts}/>
+                                    <Route path={routes.about} exact component={About}/>
+                                    <Route path={routes.conditions} exact component={Conditions}/>
+                                    <Route path="*" component={PageNotFound}/>
+                                </Switch>
+                            </ErrorBoundary>
+                        </main>
+                        <Footer/>
+                    </NotificationContext.Provider>
+
+                </UserContext.Provider>
             </div>
         );
     }

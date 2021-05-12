@@ -113,8 +113,15 @@
     cursor: pointer;
     color: green;
 }
+.post-item-edit-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-
+.post-item-edit-controls:not(.form) {
+    transform: translate(25%);
+}
 
 @media screen and (max-width: 800px) {
     .post-item .post-item-likes{
