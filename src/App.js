@@ -77,7 +77,6 @@ class App extends Component {
     getUserInfo() {
         userService.getUserInfo()
             .then(user => {
-                console.log(user);
                 this.setState((state) => ({...state, currentUser: user}))
             }).catch(err => console.error(err));
     }
